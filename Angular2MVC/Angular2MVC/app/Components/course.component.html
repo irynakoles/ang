@@ -1,0 +1,77 @@
+﻿<div class='panel panel-primary'>
+    <div class='panel-heading'>
+    Course
+    </div>
+    <div class="panel-body">
+        <div>
+            <search-list [title]='searchTitle' (change)="criteriaChange($event)"></search-list>
+        </div>
+        <div class='table-responsive'>
+            <div style="padding-bottom:10px"><button class="btn btn-primary" (click)="addCourse()">Add</button></div>
+            <div class="alert alert-info" role="alert" *ngIf="indLoading"><img src="../../images/loading.gif" width="32" height="32" /> Loading...</div>
+            <div *ngIf='users && users.length==0' class="alert alert-info" role="alert">No record found!</div>
+            <table class='table table-striped' *ngIf='courses && courses.length'>
+                <thead>
+                    <tr>
+                        <th>Course ID</th>
+                        <th>Course Name</th>
+                        <th>Course Teacher</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let course of courses | courseFilter:listFilter">
+                        <th>{{course.Id}}</th>
+                        <th>{{course.CourseName}}</th>
+                        <th>{{course.CourseTeacher}}</th>
+                        <td>
+                            <button title="Edit" class="btn btn-primary" (click)="editCourse(course.Id)">Edit</button>
+                            <button title="Delete" class="btn btn-danger" (click)="deleteCourse(course.Id)">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div>
+            </div>
+        </div>
+        <div *ngIf="msg" role="alert" class="alert alert-info alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            {{msg}}
+        </div>
+    </div>
+</div>
+
+<modal #modal>
+    <form novalidate (ngSubmit)="onSubmit(userFrm)" [formGroup]="userFrm">
+        <modal-header [show-close]="true">
+            <h4 class="modal-title">{{modalTitle}}</h4>
+        </modal-header>
+        <modal-body>
+
+            <div class="form-group">
+               
+                <div>
+                    <span>Course Name</span>
+                    <input type="text" class="form-control" placeholder="Course name" formControlName="CourseName">
+                    <div *ngIf="formErrors.CourseName" class="text-danger">
+                        {{ formErrors.CourseName }}
+                    </div>
+                </div>
+                <div>
+                    <span>Course Teacher</span>
+                    <input type="text" class="form-control" placeholder="Course Teacher" formControlName="CourseTeacher">
+                    <div *ngIf="formErrors.Gender" class="text-danger">
+                        {{ formErrors.CourseTeacher }}
+                    </div>
+                </div>
+            </div>
+        </modal-body>
+        <modal-footer>
+            <div>
+                <a class="btn btn-default" (click)="modal.dismiss()">Cancel</a>
+                <button type="submit" [disabled]="userFrm.invalid" class="btn btn-primary">{{modalBtnTitle}}</button>
+            </div>
+        </modal-footer>
+    </form>
+</modal>
