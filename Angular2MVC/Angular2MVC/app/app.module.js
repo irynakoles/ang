@@ -22,6 +22,7 @@ var user_pipe_1 = require("./filter/user.pipe");
 var course_pipe_1 = require("./filter/course.pipe");
 var search_component_1 = require("./Shared/search.component");
 var course_component_1 = require("./components/course.component");
+var ngx_order_pipe_1 = require("ngx-order-pipe");
 var errorhandler_1 = require("./Shared/errorhandler");
 var AppModule = (function () {
     function AppModule() {
@@ -30,7 +31,7 @@ var AppModule = (function () {
 }());
 AppModule = __decorate([
     core_1.NgModule({
-        imports: [platform_browser_1.BrowserModule, forms_1.ReactiveFormsModule, http_1.HttpModule, app_routing_1.routing, ng2_bs3_modal_1.Ng2Bs3ModalModule, forms_1.FormsModule],
+        imports: [platform_browser_1.BrowserModule, forms_1.ReactiveFormsModule, http_1.HttpModule, app_routing_1.routing, ng2_bs3_modal_1.Ng2Bs3ModalModule, forms_1.FormsModule, ngx_order_pipe_1.OrderModule],
         declarations: [app_component_1.AppComponent, user_component_1.UserComponent, home_component_1.HomeComponent, user_pipe_1.UserFilterPipe, course_pipe_1.CourseFilterPipe, search_component_1.SearchComponent, course_component_1.CourseComponent],
         providers: [{ provide: core_1.ErrorHandler, useClass: errorhandler_1.default }, { provide: common_1.APP_BASE_HREF, useValue: '/' }, user_service_1.UserService, course_service_1.CourseService],
         bootstrap: [app_component_1.AppComponent]

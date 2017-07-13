@@ -13,14 +13,25 @@
             <table class='table table-striped' *ngIf='users && users.length'>
                 <thead>
                     <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Gender</th>
+                        <th [class.active]="order==='FirstName'"
+                            (click)="setOrder('FirstName')"
+                            class="mdl-data-table__cell--non-numeric">First Name <span [hidden]="reverse">▼</span><span [hidden]="!reverse">▲</span>
+                        </th>
+                        <th [class.active]="order==='LastName'"
+                            (click)="setOrder('LastName')"
+                            class="mdl-data-table__cell--non-numeric">
+                            LastName<span [hidden]="reverse">▼</span><span [hidden]="!reverse">▲</span>
+                        </th>
+                        <th [class.active]="order==='Gender'"
+                            (click)="setOrder('Gender')"
+                            class="mdl-data-table__cell--non-numeric">
+                            Gender<span [hidden]="reverse">▼</span><span [hidden]="!reverse">▲</span>
+                        </th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let user of users | userFilter:listFilter">
+                    <tr *ngFor="let user of users | userFilter:listFilter | orderBy:order:reverse">
                         <td>{{user.FirstName}}</td>
                         <td>{{user.LastName}}</td>
                         <td>{{user.Gender}}</td>

@@ -15,9 +15,11 @@ import { CourseFilterPipe } from './filter/course.pipe';
 import { SearchComponent } from './Shared/search.component';
 import { CourseComponent } from './components/course.component';
 
+import { OrderModule } from 'ngx-order-pipe';
+
 import AppErrorHandler from './Shared/errorhandler';
 @NgModule({
-    imports: [BrowserModule, ReactiveFormsModule, HttpModule, routing, Ng2Bs3ModalModule, FormsModule],
+    imports: [BrowserModule, ReactiveFormsModule, HttpModule, routing, Ng2Bs3ModalModule, FormsModule, OrderModule],
     declarations: [AppComponent, UserComponent, HomeComponent, UserFilterPipe, CourseFilterPipe, SearchComponent, CourseComponent],
     providers: [{ provide: ErrorHandler, useClass: AppErrorHandler }, { provide: APP_BASE_HREF, useValue: '/' }, UserService, CourseService],
     bootstrap: [AppComponent]

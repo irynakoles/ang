@@ -26,6 +26,8 @@ export class CourseComponent implements OnInit {
     modalBtnTitle: string;
     listFilter: string;
     searchTitle: string = "Search: ";
+    order: string = "name";
+    reverse: boolean = false;
 
     constructor(private fb: FormBuilder, private _courseService: CourseService) { }
 
@@ -189,6 +191,14 @@ export class CourseComponent implements OnInit {
     criteriaChange(value: string): void {
         if (value != '[object Event]')
             this.listFilter = value;
+
+    }
+
+    setOrder(value: string) {
+        if (this.order === value) {
+            this.reverse = !this.reverse;
+        }
+        this.order = value;
 
     }
 }

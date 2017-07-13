@@ -13,13 +13,26 @@
             <table class='table table-striped' *ngIf='courses && courses.length'>
                 <thead>
                     <tr>
-                        <th>Course ID</th>
-                        <th>Course Name</th>
-                        <th>Course Teacher</th>
+                        <th [class.active]="order==='CourseId'"
+                            (click)="setOrder('CourseId')"
+                            class="mdl-data-table__cell--non-numeric">
+                            Course Id <span [hidden]="reverse">▼</span><span [hidden]="!reverse">▲</span>
+                        </th>
+                        <th [class.active]="order==='CourseName'"
+                            (click)="setOrder('CourseName')"
+                            class="mdl-data-table__cell--non-numeric">
+                            Course Name <span [hidden]="reverse">▼</span><span [hidden]="!reverse">▲</span>
+                        </th>
+                        <th [class.active]="order==='CourseTeacher'"
+                            (click)="setOrder('CourseTeacher')"
+                            class="mdl-data-table__cell--non-numeric">
+                            Course Teacher<span [hidden]="reverse">▼</span><span [hidden]="!reverse">▲</span>
+                        </th>
+                       
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let course of courses | courseFilter:listFilter">
+                    <tr *ngFor="let course of courses | courseFilter:listFilter |  orderBy:order:reverse">
                         <th>{{course.Id}}</th>
                         <th>{{course.CourseName}}</th>
                         <th>{{course.CourseTeacher}}</th>

@@ -21,6 +21,8 @@ var CourseComponent = (function () {
         this._courseService = _courseService;
         this.indLoading = false;
         this.searchTitle = "Search: ";
+        this.order = "name";
+        this.reverse = false;
         this.formErrors = {
             'FirstName': '',
             'LastName': '',
@@ -156,6 +158,12 @@ var CourseComponent = (function () {
     CourseComponent.prototype.criteriaChange = function (value) {
         if (value != '[object Event]')
             this.listFilter = value;
+    };
+    CourseComponent.prototype.setOrder = function (value) {
+        if (this.order === value) {
+            this.reverse = !this.reverse;
+        }
+        this.order = value;
     };
     return CourseComponent;
 }());

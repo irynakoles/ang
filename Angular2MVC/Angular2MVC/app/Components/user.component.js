@@ -21,6 +21,8 @@ var UserComponent = (function () {
         this._userService = _userService;
         this.indLoading = false;
         this.searchTitle = "Search: ";
+        this.order = 'name';
+        this.reverse = false;
         this.formErrors = {
             'FirstName': '',
             'LastName': '',
@@ -157,6 +159,12 @@ var UserComponent = (function () {
     UserComponent.prototype.criteriaChange = function (value) {
         if (value != '[object Event]')
             this.listFilter = value;
+    };
+    UserComponent.prototype.setOrder = function (value) {
+        if (this.order === value) {
+            this.reverse = !this.reverse;
+        }
+        this.order = value;
     };
     return UserComponent;
 }());
